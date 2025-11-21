@@ -389,6 +389,20 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Externali
         if (!(o instanceof TabulatedFunction)) return false;
         TabulatedFunction tf = (TabulatedFunction) o;
         if (this.getPointsCount() != tf.getPointsCount()) return false;
+
+        if (o instanceof LinkedListTabulatedFunction) {
+            LinkedListTabulatedFunction other = (LinkedListTabulatedFunction) o;
+            FunctionNode curThis = this.head.next;
+            FunctionNode curOther = other.head.next;
+            for (int i = 0; i < pointsCount; i++) {
+                if (!MathUtil.equals(curThis.point.getX(), curOther.point.getX())) return false;
+                if (!MathUtil.equals(curThis.point.getY(), curOther.point.getY())) return false;
+                curThis = curThis.next;
+                curOther = curOther.next;
+            }
+            return true;
+        }
+
         FunctionNode current = head.next;
         for (int i = 0; i < pointsCount; i++) {
             if (!current.point.equals(tf.getPoint(i))) return false;

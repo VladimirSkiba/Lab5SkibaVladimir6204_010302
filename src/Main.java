@@ -22,14 +22,18 @@ public class Main {
         System.out.println("toString Array: " + a.toString());
         System.out.println("toString Linked: " + l.toString());
 
+        ArrayTabulatedFunction aClone = (ArrayTabulatedFunction) a.clone();
+        LinkedListTabulatedFunction lClone = (LinkedListTabulatedFunction) l.clone();
+
+        System.out.println("equals(Array,ArrayClone): " + a.equals(aClone));
+        System.out.println("equals(Linked,LinkedClone): " + l.equals(lClone));
         System.out.println("equals(Array,Linked): " + a.equals(l));
         System.out.println("equals(Linked,Array): " + l.equals(a));
 
-        System.out.println("hashCode Array: " + a.hashCode());
-        System.out.println("hashCode Linked: " + l.hashCode());
-
-        ArrayTabulatedFunction aClone = (ArrayTabulatedFunction) a.clone();
-        LinkedListTabulatedFunction lClone = (LinkedListTabulatedFunction) l.clone();
+        int hashA_before = a.hashCode();
+        int hashL_before = l.hashCode();
+        System.out.println("hashCode Array (before): " + hashA_before);
+        System.out.println("hashCode Linked (before): " + hashL_before);
 
         System.out.println("Клонирование произведено.");
         System.out.println("Изменим исходные — увеличим y первой точки на 0.005");
@@ -41,6 +45,11 @@ public class Main {
         System.out.println("Clone Array:    " + aClone);
         System.out.println("Original Linked: " + l);
         System.out.println("Clone Linked:    " + lClone);
+
+        int hashA_after = a.hashCode();
+        int hashL_after = l.hashCode();
+        System.out.println("hashCode Array (after): " + hashA_after + " (diff: " + (hashA_after - hashA_before) + ")");
+        System.out.println("hashCode Linked (after): " + hashL_after + " (diff: " + (hashL_after - hashL_before) + ")");
     }
 
 }

@@ -253,6 +253,16 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Externalizable
         if (!(o instanceof TabulatedFunction)) return false;
         TabulatedFunction tf = (TabulatedFunction) o;
         if (this.getPointsCount() != tf.getPointsCount()) return false;
+
+        if (o instanceof ArrayTabulatedFunction) {
+            ArrayTabulatedFunction other = (ArrayTabulatedFunction) o;
+            for (int i = 0; i < pointsCount; i++) {
+                if (!MathUtil.equals(this.points[i].getX(), other.points[i].getX())) return false;
+                if (!MathUtil.equals(this.points[i].getY(), other.points[i].getY())) return false;
+            }
+            return true;
+        }
+
         for (int i = 0; i < this.getPointsCount(); i++) {
             if (!this.points[i].equals(tf.getPoint(i))) return false;
         }

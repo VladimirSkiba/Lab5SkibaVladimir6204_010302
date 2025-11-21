@@ -38,7 +38,7 @@ public class FunctionPoint implements Serializable {
         if (this == o) return true;
         if (!(o instanceof FunctionPoint)) return false;
         FunctionPoint p = (FunctionPoint) o;
-        return Double.compare(this.x, p.x) == 0 && Double.compare(this.y, p.y) == 0;
+        return MathUtil.equals(this.x, p.x) && MathUtil.equals(this.y, p.y);
     }
 
     @Override
